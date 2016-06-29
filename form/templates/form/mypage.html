@@ -1,0 +1,24 @@
+{% extends 'form/base.html' %}
+{% block title %}My Page{% endblock %}
+
+{% block body %}
+    {% load staticfiles %}
+    <div class="row text-center" style="margin: 0 auto;">
+
+    <div class="col-md-5"  style="margin: 15px;border: 1px solid cornflowerblue;height: 500px;">
+
+    </div>
+    <div class="col-md-5"  style="margin: 15px;border: 1px solid cornflowerblue;height: 500px;">
+        <h3>Add your fitness skills</h3>
+        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+             {% include 'form/registration_form.html' %}
+            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+        </form>
+    </div>
+    </div>
+
+
+{% endblock %}

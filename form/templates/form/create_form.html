@@ -1,0 +1,34 @@
+{% extends 'form/base.html' %}
+{% block title %}Create Form{% endblock %}
+
+{% block body %}
+    <h2>{{ fname }}</h2>
+<form action="" method="post">
+    {% csrf_token %}
+
+        {% for i in range(qname) %}
+        <div>
+        <label for="number_of_field">Qusetion {{ i }}</label>
+        <input type="text" id="number_of_field" name="question" maxlength="2000" required>
+            </div>
+
+                {% endfor %}
+
+        {% for i in range(qname) %}
+        <div>
+        <label for="number_of_field">Qusetion {{ i }}</label>
+        <input type="text" id="number_of_field" name="question" maxlength="2000" required>
+            </div>
+
+                {% endfor %}
+        <div>
+        <label for="choice_number">Number of Choices to add</label>
+        <input type="text" id="choice_number" name="cnum" maxlength="1000" required>
+               </div>
+                <div>
+        <label for="option_number">Number of option for each question to add</label>
+        <input type="text" id="option_number" name="oqnum" maxlength="1000" required>
+        </div>
+        <input type="submit" value="submit">
+        </form>
+{% endblock %}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load staticfiles %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'form/styles.css' %}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="{% static 'form/js/jquery-3.0.0.js' %}"></script>
+    <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+    <script src="{% static 'form/js/jquery.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.1.4/scrollreveal.min.js"></script>
+
+    <style>
+        #page {
+            background-color: #2aabd2;
+        }
+        li {
+            list-style: none;
+        }
+        .foo {
+            height: 600px;
+        }
+        .bar {
+            height: 600px;
+        }
+        .wraps {
+            margin: 20px auto 0 auto;
+            background-color: #2aabd2;
+            width: 500px;
+        }
+        .form-group {
+
+        }
+        .wraps label {
+            font-size: 36px;
+            color: #ffffff;
+        }
+        .wraps input {
+            color: #ffffff;
+            height: 40px;
+            font-size: 36px;
+            background-color: transparent;
+            outline: dotted #1b6d85 thin;
+            outline: none;
+        }
+
+        .h1 {
+            font-size: 48px;
+            color: #ffffff;
+            border-bottom: 5px #ffffff solid;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id = "page">
+<div class="wraps">
+<h1 class="h1">{{ form_name }}</h1>
+<form action="" method="post" role="form">
+    {% csrf_token %}
+    {% for field in form %}
+  <div class="form-group">
+    <!--<label for="email">Email address:</label>-->
+      {{ field.label_tag }}
+      {{ field }}
+    <!--<input type="email" class="form-control" id="email">-->
+  </div>
+    {% endfor %}
+  <!--<div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>-->
+    <div class="text-center">
+  <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+</form>
+
+</div>
+
+ </div>
+</body>
+</html>

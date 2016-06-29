@@ -1,0 +1,130 @@
+{% extends 'form/base.html' %}
+{% block title %}Fitness{% endblock %}
+
+{% block body %}
+    <script type="application/javascript">
+    function addop (e) {
+        var max_fields      = 50;
+        var wrapper3         = $(".input_fields_wrap1"); //Fields wrapper
+        $(wrapper3).append('<div class="space"><input class="space-right" type="text" name="choice[]" placeholder="label of field" required/><select name="type[]">lds"> <option value="9">Options</option></select> <a href="#" class="remove_field">Remove</a></div>')
+
+    }
+
+
+    function addOptions(e) {
+        console.log(e.target.value)
+        var selected_value = e.target.value
+        if(selected_value == 3 || selected_value == 4 || selected_value == 6 || selected_value == 12){
+            console.log(e.target.nodeName)
+            //alert('options necessary')
+            var max_fields      = 50;
+             var wrapper2         = $(".input_fields_wrap1"); //Fields wrapper
+             var add_button2      = $(".add_option"); //Add button ID
+             var y = 1; //initlal text box count
+
+
+            $(wrapper2).append('<a href= "#" class = "add_option" onclick = "addop()" style="margin-top:20px;margin-bottom: 20px;font-size:36px;text-decoration:none;"> + </a><div class="space"><input class="space-right" type="text" name="choice[]" placeholder="label of field" required/><select name="type[]">lds"> <option value="9">Options</option></select> <a href="#" class="remove_field">Remove</a></div>'); //add options
+
+
+
+    }
+    }
+
+
+    $(document).ready(function() {
+    var max_fields      = 50; //maximum input boxes allowed
+    var wrapper         = $(".input_fields"); //Fields wrapper
+    var add_button      = $(".add_field_but"); //Add button ID
+
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+        }
+    });
+
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+    $(document).ready(function() {
+    var max_fields      = 50; //maximum input boxes allowed
+    var wrapper1         = $(".input_fields_wrap1"); //Fields wrapper
+    var add_button1      = $(".add_field_button1"); //Add button ID
+
+    var y = 1; //initlal text box count
+
+    $(add_button1).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(y < max_fields){ //max input box allowed
+            y++; //text box increment
+            $(wrapper1).append('<div class="space"><input class="space-right" type="text" name="choice[]" placeholder="label of field" required/><select name="type[]" onchange="addOptions(event)"><optgroup label="Text fields"> <option value="1">Short Paragraph</option> <option value="2">Long Paragraph</option> <option value="10">Email field</option> <option value="11">Integer field</option> <option value="7">Date</option> <option value="8">Time</option> </optgroup> <optgroup label="Single choice fields"> <option value="3">Single Choice - Options</option> <option value="6">Dropdown - Options</option> </optgroup> <optgroup label="Boolean choice fields"> <option value="5">Checkbox</option> </optgroup> <optgroup label="Multiple choice fields"> <option value="4">Multiple Choice - Options</option><option value="12">Multiple Checkbox</option> </optgroup></select> <a href="#" class="remove_field">Remove</a></div>'); //add input box
+        }
+    });
+
+    $(wrapper1).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); y--;
+    })
+});
+
+    </script>
+    <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                        <div class="text-center" style="width: 500px;background: white;margin: 0 auto;">
+                        <form id = "myform" action="" method="post">
+                        {% csrf_token %}
+                        <label class="control-label col-sm-3" for="song_title"><label for="fname">Form name</label></label>
+        <div class="col-sm-9"><input type="text" name="fname"></div>
+                            <!--
+                            <div><label for="fname">Form name</label>
+                        <div><input type="text" name="fname"></div>
+                    </div> -->
+
+                            <div class="input_fields_wrap1">
+                        <button class="add_field_button1" style="margin-top:20px;margin-bottom: 20px;">Add Questions</button>
+                        <p>Add form fields</p>
+                        <div class="space"><input class="space-right" type="text" name="choice[]" placeholder="label of field" required/>
+                            <select name="type[]" onchange="addOptions(event)">
+                                <optgroup label="Text fields">
+                                    <option value="1">Short Paragraph</option>
+                                    <option value="2">Long Paragraph</option>
+                                    <option value="10">Email field</option>
+                                    <option value="11">Integer field</option>
+                                    <option value="7">Date</option>
+                                    <option value="8">Time</option>
+                                </optgroup>
+                                <optgroup label="Single choice fields">
+                                    <option value="3">Single Choice - Options</option>
+                                    <option value="6">Dropdown - Options</option>
+
+                                </optgroup>
+                                <optgroup label="Boolean choice fields">
+                                    <option value="5">Checkbox</option>
+                                </optgroup>
+                                <optgroup label="Multiple choice fields">
+                                    <option value="4">Multiple Choice - Options</option>
+                                    <option value="12">Multiple Checkbox</option>
+                                </optgroup>
+
+                            </select>
+                            <a href="#" class="remove_field">Remove</a>
+                            <div class="inner"></div>
+                        </div>
+                    </div>
+
+                        <div class="col-sm-offset-2 col-sm-10">
+                                <button style="margin-top: 25px;" type="submit" class="btn btn-success">Create Form</button>
+                            </div>
+
+                        </form>
+                        </div>
+                    </div>
+                </div>
+
+{% endblock %}

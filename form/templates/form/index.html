@@ -1,0 +1,47 @@
+{% extends 'form/base.html' %}
+{% block title %}Fitness{% endblock %}
+
+{% block body %}
+    <div class="text-center jumbotron">
+        <h1>Welcome to the Fitness App</h1>
+        <p>We believe <strong>Fitness</strong></p>
+
+        <a href="{% url 'form:register' %}" class="btn btn-success btn-lg">Get Started</a>
+    </div>
+
+
+
+
+
+    <div class="article text-center">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <a href=""></a>
+                <h3 class="h3">Services</h3>
+                <p>This is a placeholder</p>
+            </div>
+        <div class="col-md-4 text-center">
+                <a href=""></a>
+                <h3 class="h3">Pricing</h3>
+                <h2>
+
+            </div>
+        <div class="col-md-4 text-center">
+                <a href=""></a>
+                <h3 class="h3">Consult Doctors</h3>
+
+                {% for doctor in doctors %}
+
+                    {% if doctor.is_verified %}
+
+                    <p>name - {{ doctor.name }} mobile - {{ doctor.mobile }}</p>
+                    {% if doctor.photo %}
+                        <a href = "detail/doctor/{{ doctor.pk }}/" > <img src="{{ doctor.photo.url }}" width="150px" height="150px" ></a>
+                        {% endif %}
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
